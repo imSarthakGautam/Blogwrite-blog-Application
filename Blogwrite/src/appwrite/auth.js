@@ -23,7 +23,7 @@ export class AuthService {
     // It takes email, pw and name as parameters
     async createAccount({email, password, name}){
         try{
-            userAccount = await this.account.create(ID.unique(), email, password, name);
+            const userAccount = await this.account.create(ID.unique(), email, password, name);
             if (userAccount) {
                 // call another method :login directly
                 return this.login({email, password});

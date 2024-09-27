@@ -12,11 +12,14 @@ function App() {
   // console.log(process.env.REACT_APP_APPWRITE_URL); --create react app
   // console.log(import.meta.env.VITE_APPWRITE_URL); -- Vite
 
- // Loading state
+ // tracking if app is stil Loading data, initially true.
  const [loading, setLoading] = useState(true)
  const dispatch = useDispatch()
 
+ //runs after compoments mounts 
  useEffect(() => {
+
+  //checks if there is a logged-in user
   authService.getCurrentUser()
   .then((userData)=>{
 
