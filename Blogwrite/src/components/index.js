@@ -7,6 +7,8 @@ import Input from "./Input";
 import PostCard from "./PostCard";
 import Select from "./Select";
 import { RTE } from "./RTE";
+import Signup from "./Signup";
+import PostForm from './post-form/PostForm'
 
 
 export {
@@ -19,4 +21,6 @@ export {
      Select,
      RTE,
      PostCard,
+     Signup,
+     PostForm
     };

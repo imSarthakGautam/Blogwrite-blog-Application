@@ -21,6 +21,8 @@ function Login(){
     const [error, setError] = useState('')
 
     const login = async(data) => {
+        //This data is collected from --register---in forms
+        // and then handleSubmit which passes this data to login.
         console.log(data)
         setError("") // removing previous error msg.
         try {

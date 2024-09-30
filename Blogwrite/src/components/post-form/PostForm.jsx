@@ -80,6 +80,9 @@ export default function PostForm({post}) {
         
                 return "";
             }, []);
+
+            //When you type something into the Title input,
+            // the form is "watching" this field for any changes
         
             React.useEffect(() => {
                 const subscription = watch((value, { name }) => {
@@ -116,6 +119,8 @@ export default function PostForm({post}) {
                     placeholder="Slug"
                     className="mb-4"
                     {...register("slug", { required: true })}
+
+                    // on Input is for manual updating set values
                     onInput={(e) => {
                         setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}

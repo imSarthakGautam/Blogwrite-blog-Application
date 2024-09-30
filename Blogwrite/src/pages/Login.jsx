@@ -1,17 +1,17 @@
 import React from 'react'
-import {Signup as SignupComponet} from '../components'
+import {Login as LoginComponet} from '../components'
 
-function Signup(props) {
+function Login(props) {
     
 
     return (
         <>
         <div className="py-8">
-            <SignupComponet/>
+            <LoginComponet/>
         </div>
             
         </>
     )
 }
 
-export default Signup
+export default Login
