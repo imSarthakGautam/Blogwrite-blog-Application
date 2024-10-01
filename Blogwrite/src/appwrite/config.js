@@ -1,5 +1,5 @@
-import conf from '../conf.js'
-import { Client, Databases, ID , Storage, Query } from "appwrite";
+import conf from '../conf/conf'
+import { Client,Account, Databases, ID , Storage, Query } from "appwrite";
 
 export class Service{
     client = new Client();
@@ -12,8 +12,8 @@ export class Service{
             .setProject(conf.appwriteProjectId)
         this.account = new Account(this.client);
 
-        this.databases= new Databases()
-        this.bucket = new Storage()
+        this.databases= new Databases(this.client);
+        this.bucket = new Storage(this.client);
         //In Appwrite (and many other services),
         // buckets and storage refer to a way of handling and managing files,
         // such as images, videos, documents, and other data that are not directly stored in the database
@@ -121,6 +121,8 @@ export class Service{
 
     async uploadFile(file){
         try{
+            const session = await this.account.get(); // Check if user is logged in
+            if (session) {
 
             return await this.bucket.createFile(
 
@@ -131,6 +133,10 @@ export class Service{
                 //actual file you want to upload : img, doc
                 file, 
             )
+            } else {
+                console.error("User not authenticated");
+                return false;
+            }
 
         }catch (error){
             console.log( "appwrite service :: uploadFile :: error", error);
