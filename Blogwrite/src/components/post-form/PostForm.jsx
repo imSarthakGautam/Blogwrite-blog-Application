@@ -22,9 +22,19 @@ export default function PostForm({post}) {
             },
          })
     const navigate=useNavigate()
-    const userData=useSelector(state=> state.user.userData)
+    
+    const userData=useSelector((state)=> {
+        console.log(`State: ${JSON.stringify(state, null, 2)}`)
+        return state.auth.userData
+    })
 
     const submit = async(data)=>{
+
+        console.log('User Data:', userData);
+        if (!userData || !userData.$id) {
+            console.error('User ID is missing!');
+            return; // Exit the function if userId is not available
+        }
 
         // Check if post exists: EDIT MODE
         if (post){
@@ -67,38 +77,40 @@ export default function PostForm({post}) {
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
                 }
-            }               
-            };
+            } 
+        }              
+    };
 
-            const slugTransform = useCallback((value) => {
-                if (value && typeof value === "string")
-                    return value
-                        .trim()
-                        .toLowerCase()
-                        .replace(/[^a-zA-Z\d\s]+/g, "-")
-                        .replace(/\s/g, "-");
+        const slugTransform = useCallback((value) => {
+            if (value && typeof value === "string"){
+                return value
+                    .trim()
+                    .toLowerCase()
+                    .replace(/[^a-zA-Z\d\s]+/g, "-")
+                    .replace(/\s/g, "-");
+
+                    console.log("inside slugTransform")
+                }
         
-                return "";
-            }, []);
+            return "";
+        }, []);
 
             //When you type something into the Title input,
             // the form is "watching" this field for any changes
         
-            React.useEffect(() => {
+        React.useEffect(() => {
                 const subscription = watch((value, { name }) => {
                     if (name === "title") {
                         setValue("slug", slugTransform(value.title), { shouldValidate: true });
+                        console.log("inside watch title to slug")
                     }
                 });
         
                 return () => subscription.unsubscribe();
-            }, [watch, slugTransform, setValue]);
+        }, [watch, slugTransform, setValue]);
 
-        }
-    }
-
-
-
+        
+    
     return (
         <>
          <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
@@ -164,3 +176,5 @@ export default function PostForm({post}) {
         </>
     )
 
+                
+}

@@ -1,9 +1,10 @@
 import React from 'react'
+import { useState, useEffect } from 'react'
 import { Container, PostCard } from '../components'
 import appwriteServices from '../appwrite/config'
 
 
-export function AllPosts(props) {
+function AllPosts(props) {
     const [posts, setPosts] = useState([])
     useEffect(() => {
         
@@ -11,7 +12,8 @@ export function AllPosts(props) {
 
     appwriteServices.getPosts([]).then((posts)=> {
         if (posts){
-            setPosts(posts)
+            
+            setPosts(posts.documents)
         }
     })
      
@@ -32,3 +34,5 @@ export function AllPosts(props) {
         </>
     )
 }
+
+export default AllPosts

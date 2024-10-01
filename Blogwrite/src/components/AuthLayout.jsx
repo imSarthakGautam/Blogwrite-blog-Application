@@ -2,11 +2,11 @@
 //If the authentication status does not match the required condition, the user is redirected to a different route (/login or /).
 
 import React, {useEffect, useState} from 'react'
-import { useSelector, UseSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 
-export function Protected({children, authentication= true}) {
+export default function Protected({children, authentication= true}) {
 
     const navigate= useNavigate()
     const [loader, setLoader] = useState(true)
@@ -23,6 +23,7 @@ export function Protected({children, authentication= true}) {
         // }
 
         if (authentication && authStatus !== authentication) {
+            console.log("Sucessful authentication")
             navigate('/login') // if not authenticated, redirect to login
             
         } else if (!authentication && authStatus !== authentication){

@@ -7,7 +7,7 @@ import {Editor} from '@tinymce/tinymce-react'
 // to integrate uncontrolled components like TinyMCE into the form state.
 import { Controller } from 'react-hook-form'
 
-export function RTE({
+function RTE({
     name,
     control,// pass on control --const {control}=useForm()
     label,
@@ -27,13 +27,17 @@ export function RTE({
             <Controller
             name={ name || 'content'}
             control={control} //Tells react-hook-form to manage this field's state
-            render ={ ( {feild : {onChange}}) => {
+            
+            
+            render ={ ( {field : {onChange}}) => (
                 //what do you want to render : i/p feild, editor here..
 
                 //rendering TINYMCE editor here
+                
                 <Editor
-                initialValue={defaultValue}
-                init={{
+                apiKey='s45mxwte783mb1c2nize2wxydw5s12o9ec9aiedo0wvpq3bx'
+                 initialValue={defaultValue}
+                 init={{
                     initialValue: defaultValue,
                     height: 500,
                     menubar: true,
@@ -62,21 +66,24 @@ export function RTE({
                     toolbar:
                     "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
                     content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
-                }}
+                    }}
 
-                // When users type or edit content, onEditorChange is triggered.
-                onEditorChange={onChange}
-                // The onChange method inside the render function is provided by React Hook Form,
-                // and it ensures that whenever content in the TinyMCE editor changes,
-                // the form state is updated accordingly
+                    // When users type or edit content, onEditorChange is triggered.
+                    onEditorChange={onChange}
+                    // The onChange method inside the render function is provided by React Hook Form,
+                    // and it ensures that whenever content in the TinyMCE editor changes,
+                    // the form state is updated accordingly
                 />
-             } }
+                )
+              }
 
              />
 
         </div>
   )
 }
+
+export default RTE
 
 /*
 Notes:
