@@ -1,76 +1,84 @@
-# Blog_App
 
-## Installing the dependencies :
-```
+# Blogwrite : A Blog Application
+
+This project is a React-based blog application that leverages modern tools and libraries like Redux Toolkit, React Router, and Appwrite to manage posts, user authentication, and dynamic content creation.
+
+![Blogwrite App](./Blogwrite/public/images/home_with_login.png)
+
+---
+
+## **Features**
+- User Authentication (Login and Signup).
+- Create, Read, Update, and Delete (CRUD) operations for blog posts.
+- Rich text editing for post content using TinyMCE.
+- File upload and management for featured images.
+- Dynamic slug generation for posts.
+- Secure routing for authenticated and unauthenticated users.
+
+
+## System : Simplified View :
+![System Design](./Blogwrite/public/images/System%20Design.png)
+---
+
+## Setup Instructions :
+### 1. Clone the repository :
+```bash
+   git clone <repository-url>
+   cd Blogwrite
+   ```
+
+### 2. Installing the dependencies :
+```bash
 npm i @reduxjs/toolkit react-redux react-router-dom @tinymce/tinymce-react html-react-parser react-hook-form appwrite
 ```
-
-appwrite,
-tinymce. 
-html-react-parser, 
-react-hook-forms
-
-## Setting up environment variables: 
-- Create .env at project root 
-
-## Using Appwrite Services 
-- **Services** are external modules or systems that provide specific functionality without requiring you to build it yourself. 
-
-- We register and set up a services like `Appwrite` in our app by connecting it to your project using API keys and project IDs.
-
-- `Appwrite` acts as a service provider that offers:
-1. Authentication (login, registration)
-2. Database (storing and retrieving blog posts)
-3. Storage (for file upload and download)
+[About these Packages and dependencies](packages.md)
 
 
-## To use Appwrite's API 
-1. Setting up `Appwrite SDK` (as per platform, For React JavaScript SDK)
-```
-npm install appwrite
-```
-2. Initialize Appwrite Client
-To interact with Appwrite services, first, we need to initialize the Appwrite client
+### 3. Setting up environment variables: 
+- Create .env at project root, environment variables being: `env.sample`
 
-    [Note :_The Client is like a connection between your app and Appwrite's backend. It tells your app where to send requests (like logging in a user or saving data). Without the client, your app wouldn’t know how to talk to the Appwrite server.]_
+### 4.  Using Appwrite Services 
+- Register to `Appwrite` and configure account and project settings (Database, bucket ), setup `Appwrite SDK` and  intialize them by setting up endpoints for the project i.e. project Id, database Id.
 
 
-3. Using specific Services (API Endpoints)
-Appwrite offers different services like _Account, Database, Storage, etc._ Each service has its own methods that can be used to perform different actions.
+[More about use of Appwrite Services](appwrite.md)
 
-    [Note: _API Endpoints are specific URLs (web addresses) that your app uses to interact with a backend service like Appwrite. Think of an endpoint as a door that your app goes through to perform certain tasks.]_
+---
 
-4. Setting up environent varibles to avoid hardcoding  values of Appwrite endpoints or Project ID.
+### **Key Features of Routes**
+- **`/`**: Home page.
+- **`/login`**: Login page for unauthenticated users.
+- **`/signup`**: Signup page for new users.
+- **`/all-posts`**: Displays all posts for authenticated users.
+- **`/add-post`**: Allows creating new posts (authenticated).
+- **`/edit-post/:slug`**: Edits an existing post (authenticated).
+- **`/post/:slug`**: Displays a single post.
 
-## Creation of Conf / configuration
-- here we create `conf.js`
-- Conf stores the values of all environment variables in form of js object
+---
 
-## Creation of Appwrite Services (folder)
-- src> appwrite
+## **Usage**
+### **Authentication**
+- Login and Signup routes use `AuthLayout` to ensure proper user state.
+- Authenticated routes (`/all-posts`, `/add-post`, `/edit-post/:slug`) are protected.
 
-### auth.js
-- Here we create `auth.js`
 
-- Inside auth.js we create class `AuthService` to manage user authentication using appwrite services.
+![](./Blogwrite/public/images/Home_without_login.png)
+![](./Blogwrite/public/images/login.png)
+![](./Blogwrite/public/images/signup.png)
 
-- Here we set up `Client` (via constructor, configured using project ID and endpoints) and `Account`.
 
-- Then we access various account methods like **account.**`create(), createEmailSession(), get(), deleteSession()` to manage login, logout,etc.
+### **Dynamic Slug Generation**
+- Slugs are auto-generated from post titles during creation and updates.
 
-- The object of `AuthService` is exported for furhter use.
-It can use methods of this class like .login, .logout,etc
 
-**This makes frontend isolated from backend.**
+### **Post Management**
+- Rich text content is handled with TinyMCE.
+- Featured images are uploaded to Appwrite and linked to posts.
+![](./Blogwrite/public/images/Create_Post.png)
+![](./Blogwrite/public/images/Post%20Page.png)
 
-### config.js
-- Here we create class `Service` to manage DB and storage(bucket) related appwrite services.
-- It helps to perform CRUD operations for blogs stored as documents in Appwrite DB,
-- Additionally it interacts with appwrite's storage(bucket) to manage files like img used in blog post
+---
 
-- Here we setup `Clinet` and initilaize db services  and storage services inside constructor of class 'Service'
 
-- Creation of methods for Blog and Bucket operations.
 
-   [NOTE:_Buckets are used to manage files such as the `featuredImage` in each blog post. These images are stored in the Appwrite bucket have references in database_]
 
