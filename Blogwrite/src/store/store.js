@@ -3,8 +3,11 @@ import authSlice from './authSlice';
 
 const store = configureStore({
     reducer : {  
-        auth : authSlice,   
+        auth : authSlice,
+        //post : postSlice,   
     }
 })
 
 export default store
+
+// we make a store here to store state of data
