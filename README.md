@@ -18,12 +18,13 @@ This project is a React-based blog application that leverages modern tools and l
 
 ## System : Simplified View :
 ![System Design](./Blogwrite/public/images/System%20Design.png)
+
 ---
 
 ## Setup Instructions :
 ### 1. Clone the repository :
 ```bash
-   git clone <repository-url>
+   git clone https://github.com/imSarthakGautam/Blog_App.git
    cd Blogwrite
    ```
 
