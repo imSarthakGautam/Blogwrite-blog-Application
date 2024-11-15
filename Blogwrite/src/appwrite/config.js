@@ -44,6 +44,9 @@ export class Service{
     
     }
 
+    //Learn about access methods of these parameters...
+    // difference between (a,b,c) and (a, {b,c})
+
     async updatePost(slug, {title, content, featuredImage, status}){
         try{
 
@@ -86,11 +89,13 @@ export class Service{
     async getPost(slug){
         try{
 
-            return await this.databases.getDocument(
+            let getPost= await this.databases.getDocument(
                  conf.appwriteDatabaseId,
                  conf.appwriteCollectionId,
                  slug,
             )
+            console.log('Get Post from appwrite',getPost)
+            return getPost;
     
             
         }catch (error){
@@ -103,11 +108,14 @@ export class Service{
     async getPosts(queries= [Query.equal("status", "active")]){
         try{
 
-            return await this.databases.listDocuments(
+            let getPosts= await this.databases.listDocuments(
                  conf.appwriteDatabaseId,
                  conf.appwriteCollectionId,
                  queries,
             )
+            console.log(getPosts)
+            //que: are posts in form of arrays ?
+            return getPosts;
     
             
         }catch (error){

@@ -24,6 +24,8 @@ export class AuthService {
     async createAccount({email, password, name}){
         try{
             const userAccount = await this.account.create(ID.unique(), email, password, name);
+            console.log('Appwrite createAccount:', userAccount)
+
             if (userAccount) {
                 // call another method :login directly
                 return this.login({email, password});
@@ -32,13 +34,16 @@ export class AuthService {
             }
 
         } catch (error) {
+            console.log('Error is creating account ')
             throw error;
         }
     } 
 
     async login({email, password}){
         try{
-            return await this.account.createEmailPasswordSession(email, password);
+            let session = await this.account.createEmailPasswordSession(email, password);
+            console.log('Login session from appwrite', session);
+            return session
         }
         catch (error) {
             throw error;
@@ -49,7 +54,9 @@ export class AuthService {
     // If an error occurs, it logs the error and returns null.
     async getCurrentUser(){
         try {
-            return await this.account.get();
+            let currentUser= await this.account.get();
+            console.log('The current user', currentUser)
+            return currentUser;
         }
         catch (error) {
             console.log("Appwrite service :: getCurrentUser :: error", error);
