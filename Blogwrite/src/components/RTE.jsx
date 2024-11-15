@@ -11,6 +11,7 @@ function RTE({
     name,
     control,// pass on control --const {control}=useForm()
     label,
+    labelcss,
     defaultValue=""
     }) {
     
@@ -20,7 +21,7 @@ function RTE({
            
 
         <div className='w-full'> 
-            {label && <label className='inline-block mb-1 pl-1'>{label}</label>}
+            {label && <label className={`inline-block mb-1 pl-1 text-lg font-semibold ${labelcss}`}>{label}</label>}
 
             {/* Controller responsible for linking TinyMCE editor to form using control prop */}
 
@@ -35,38 +36,38 @@ function RTE({
                 //rendering TINYMCE editor here
                 
                 <Editor
-                apiKey='s45mxwte783mb1c2nize2wxydw5s12o9ec9aiedo0wvpq3bx'
-                 initialValue={defaultValue}
-                 init={{
-                    initialValue: defaultValue,
-                    height: 500,
-                    menubar: true,
-                    plugins: [
-                        "image",
-                        "advlist",
-                        "autolink",
-                        "lists",
-                        "link",
-                        "image",
-                        "charmap",
-                        "preview",
-                        "anchor",
-                        "searchreplace",
-                        "visualblocks",
-                        "code",
-                        "fullscreen",
-                        "insertdatetime",
-                        "media",
-                        "table",
-                        "code",
-                        "help",
-                        "wordcount",
-                        "anchor",
-                    ],
-                    toolbar:
-                    "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
-                    content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
-                    }}
+                    apiKey='s45mxwte783mb1c2nize2wxydw5s12o9ec9aiedo0wvpq3bx'
+                    initialValue={defaultValue}
+                    init={{
+                        initialValue: defaultValue,
+                        height: 500,
+                        menubar: true,
+                        plugins: [
+                            "image",
+                            "advlist",
+                            "autolink",
+                            "lists",
+                            "link",
+                            "image",
+                            "charmap",
+                            "preview",
+                            "anchor",
+                            "searchreplace",
+                            "visualblocks",
+                            "code",
+                            "fullscreen",
+                            "insertdatetime",
+                            "media",
+                            "table",
+                            "code",
+                            "help",
+                            "wordcount",
+                            "anchor",
+                        ],
+                        toolbar:
+                        "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
+                        content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
+                        }}
 
                     // When users type or edit content, onEditorChange is triggered.
                     onEditorChange={onChange}
@@ -94,7 +95,6 @@ In this case, the form element's value is stored in the component’s state, and
 
 An uncontrolled component in React is a form element where the value is controlled by the DOM itself, not by React state.
  You don't control its value through state or props, and instead access the current value when needed, typically using refs.
-
 
  The control prop is an object provided by React Hook Form to manage form elements' state. It keeps track of form data, validation,
   and any interaction with the form inputs, making sure that the form behaves as expected.

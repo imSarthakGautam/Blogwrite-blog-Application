@@ -7,3 +7,8 @@ const conf ={
 }
 
 export default conf
+
+/*
+a configuration object conf that stores various settings for your Appwrite project, such as URLs, project IDs, bucket IDs, database IDs, and collection IDs.
+ These values are pulled from environment variables (using import.meta.env in Vite), which helps manage sensitive data or project-specific configurations.
+*/

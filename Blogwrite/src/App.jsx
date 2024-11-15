@@ -37,12 +37,15 @@ function App() {
   
   return !loading ? (
    <>
-   <div className='min-h-screen flex flex-wrap content-between bg-gray-400'>
+   <div className='min-h-screen flex flex-wrap content-between bg-[#053161]'>
       <div className="w-full block">
         <Header/>
         <main>
-          TODO : <Outlet/>
-          {/* outlet: from react router dom */}
+          <div className="h-full w-full p-28">
+            <Outlet />
+            {/* outlet: from react router dom */}
+          </div>
+          
         </main>
         <Footer/>
       </div>

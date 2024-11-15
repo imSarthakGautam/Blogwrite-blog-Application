@@ -16,7 +16,7 @@ import {logout} from '../../store/authSlice'
     
 
     return (
-        <button className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
+        <button className='inline-bock px-6 py-2 duration-200 hover:bg-[#EEF5DB] hover:text-[#003366] text-[#EEF5DB] text-xl font-semibold rounded-full'
         onClick={logoutHandler}>
             Logout
         </button>

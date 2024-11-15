@@ -8,7 +8,8 @@ import React, {useId} from 'react'
 const Input = React.forwardRef( function Input({
         label, // labels for i/p feilds like name, email
         type= 'text',
-        className='', 
+        className='',
+        labelcss='', 
         ...props
 }, ref
 //first parameter, 2nd param= ref
@@ -20,7 +21,7 @@ const Input = React.forwardRef( function Input({
             
                 <div className="w-full">
                     {label && < label 
-                            className='inline-block mb-1 pl-1' 
+                            className={`inline-block mb-1 pl-1 font-semibold text-lg text-left ${labelcss}`}
                             htmlFor={id}>
                               {label}
                     </label>

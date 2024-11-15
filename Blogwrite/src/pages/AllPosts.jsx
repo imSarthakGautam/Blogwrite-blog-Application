@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Container, PostCard } from '../components'
+import { Container, Logo, PostCard } from '../components'
 import appwriteServices from '../appwrite/config'
+
 
 
 function AllPosts(props) {
@@ -28,7 +29,10 @@ function AllPosts(props) {
                         <PostCard {...post} />
                     </div>
                 ))}
+                
             </div>
+            
+            
             </Container>
     </div>
         </>

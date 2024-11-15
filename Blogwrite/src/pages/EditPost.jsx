@@ -12,6 +12,7 @@ function EditPost() {
         if (slug) {
             appwriteService.getPost(slug).then((post) => {
                 if (post) {
+                    console.log('Post exists to edit')
                     setPosts(post)
                 }
             }).catch((error) => {

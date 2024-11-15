@@ -11,6 +11,7 @@ export default function Post() {
     const { slug } = useParams();
     const navigate = useNavigate();
 
+    //que: function of useSelector and understand state properly
     const userData = useSelector((state) => state.auth.userData);
 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
@@ -19,11 +20,11 @@ export default function Post() {
     useEffect(() => {
         if (slug) {
             appwriteService.getPost(slug).then((post) => {
-                if (post) setPost(post);
+                if (post) setPost(post); // if post display it else back to home page.
                 else navigate("/");
             });
         } else navigate("/");
-    }, [slug, navigate]);
+    }, [slug, navigate]); // que: why navigate in dependency array ?
 
     const deletePost = () => {
         appwriteService.deletePost(post.$id).then((status) => {
@@ -34,6 +35,9 @@ export default function Post() {
         });
     };
 
+   
+    
+
     return post ? (
         <div className="py-8">
             <Container>
@@ -42,12 +46,14 @@ export default function Post() {
                         src={appwriteService.getFilePreview(post.featuredImage)}
                         alt={post.title}
                         className="rounded-xl"
+                        width='80%'
                     />
 
                     {isAuthor && (
                         <div className="absolute right-6 top-6">
                             <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
+                            
+                                <Button bgColor="bg-green-500" className="mr-3" >
                                     Edit
                                 </Button>
                             </Link>
@@ -59,10 +65,10 @@ export default function Post() {
                 </div>
 
                 <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{post.title}</h1>
+                    <h1 className="text-2xl font-bold text-[#EEF5DB]">{post.title}</h1>
                 </div>
 
-                <div className="browser-css">
+                <div className="browser-css text-gray-300">
                     {parse(post.content)}
                     </div>
             </Container>
